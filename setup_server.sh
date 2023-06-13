@@ -13,7 +13,7 @@ systemctl start docker
 systemctl enable docker
 
 source .env
-STRING="AccountID ${MAXMIND_ACCOUNT_ID}\LicenseKey ${VAR2}\EditionIDs GeoLite2-City GeoLite2-Country GeoLite2-ASN\nDatabaseDirectory /var/lib/GeoIP"
+STRING="AccountID ${MAXMIND_ACCOUNT_ID}\nLicenseKey ${VAR2}\nEditionIDs GeoLite2-City GeoLite2-Country GeoLite2-ASN\nDatabaseDirectory /var/lib/GeoIP"
 echo -e "${STRING}" >> /etc/GeoIP.conf
 
 geoipupdate
