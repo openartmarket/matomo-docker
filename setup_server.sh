@@ -8,10 +8,6 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 apt update
 apt install -y docker-ce docker-ce-cli containerd.io
 
-# Start Docker service
-systemctl start docker
-systemctl enable docker
-
 source .env
 echo "AccountID ${MAXMIND_ACCOUNT_ID}" >> /etc/GeoIP.conf
 echo "LicenseKey ${MAXMIND_LICENSE_KEY}" >> /etc/GeoIP.conf 
@@ -21,5 +17,9 @@ echo "DatabaseDirectory /var/lib/GeoIP" >> /etc/GeoIP.conf
 
 geoipupdate
 echo "50 2 * * 4 root /usr/bin/geoipupdate" >> /etc/cron.d/geoipupdate
+
+# Start Docker service
+systemctl start docker
+systemctl enable docker
 
 docker compose up -d
